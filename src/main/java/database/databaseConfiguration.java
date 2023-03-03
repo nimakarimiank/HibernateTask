@@ -1,8 +1,10 @@
 package database;
 
-import database.entities.Employees;
+import database.entities.Employee;
+import database.entities.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
@@ -10,9 +12,13 @@ import java.util.Properties;
 public class databaseConfiguration {
     public static Session Config(){
         Configuration configuration = new Configuration();
+
         configuration.setProperties(getProperties());
-        configuration.addAnnotatedClass(Employees.class);
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Users.class);
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties());
+        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
         Session session = sessionFactory.openSession();
         return session;
     }
@@ -27,8 +33,10 @@ public class databaseConfiguration {
         props.put("hibernate.connection.driver_class","org.postgresql.Driver");
         props.put("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");
         props.put("hibernate.connection.url",url);
-        props.put("hbm2ddl.auto","create");
-
+        props.put("current_session_context_class","thread");
+        props.put("hibernate.hbm2ddl.auto","create");
+        props.put("show_sql","true");
+        props.put("hibernate.default_schema","public");
         return props;
     }
 }
