@@ -1,19 +1,24 @@
 package database.entities;
+
+import database.entities.subentities.Contact;
+import database.entities.subentities.Gender;
 import javax.persistence.*;
 
 @Entity(name = "Employee")
+@Table(name = "employee")
 public class Employee {
+    @ManyToOne(targetEntity = Department.class)
+    private Department department;
+    @Embedded
+    private Contact contact;
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "national_id")
-    private int nationalId;
-
+    private int nationalId=-999999;
     @Column(name = "age")
     private int age;
-//    @Column(name = "date_of_birth")
-//    private DateType dateOfBirth;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -28,9 +33,22 @@ public class Employee {
 
     }
 
-    public Employee(int id, int nationalId, int age, String firstName,
+    public Employee(Department department, Contact contact, int id, int nationalId, int age, String firstName,
                     String lastName, String emailAddress, Gender gender) {
+        this.department = department;
+        this.contact = contact;
         this.id = id;
+        this.nationalId = nationalId;
+        this.age = age;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.gender = gender;
+    }
+    public Employee(Department department, Contact contact, int age, String firstName,int nationalId,
+                    String lastName, String emailAddress, Gender gender) {
+        this.contact = contact;
+        this.department = department;
         this.nationalId = nationalId;
         this.age = age;
         this.firstName = firstName;
@@ -93,5 +111,27 @@ public class Employee {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getInfo (){
+
+
+        return  this.id +this.firstName+" "+this.lastName+" "+this.emailAddress;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

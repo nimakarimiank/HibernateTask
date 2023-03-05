@@ -1,6 +1,8 @@
 package database;
 
+import database.entities.Department;
 import database.entities.Employee;
+import database.entities.Project;
 import database.entities.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,6 +17,8 @@ public class databaseConfiguration {
 
         configuration.setProperties(getProperties());
         configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Department.class);
+        configuration.addAnnotatedClass(Project.class);
         configuration.addAnnotatedClass(Users.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
@@ -25,6 +29,8 @@ public class databaseConfiguration {
     private static Properties getProperties(){
         final String hostName = "localhost";
         final String portNumber = "5432";
+        final String implementationMode = getImplementationMode();
+
         final String url = "jdbc:postgresql://"+hostName+":"+portNumber+"/employee";
 
         Properties props = new Properties();
@@ -34,9 +40,13 @@ public class databaseConfiguration {
         props.put("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");
         props.put("hibernate.connection.url",url);
         props.put("current_session_context_class","thread");
-        props.put("hibernate.hbm2ddl.auto","create");
-        props.put("show_sql","true");
+        props.put("hibernate.hbm2ddl.auto", implementationMode);
+        props.put("hibernate.show_sql","true");
         props.put("hibernate.default_schema","public");
         return props;
+    }
+
+    private static String getImplementationMode() {
+        return "create";
     }
 }
