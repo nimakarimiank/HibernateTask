@@ -161,7 +161,7 @@ public class Employee {
         }
 
     }
-    public void readEmployees(int id){
+    public void readEmployee(int id){
 
         List<Employee> employees;
         try (Session session = databaseConfiguration.Config()) {
