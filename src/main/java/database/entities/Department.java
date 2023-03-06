@@ -1,5 +1,7 @@
 package database.entities;
 
+import database.databaseConfiguration;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,6 +53,7 @@ public class Department {
     }
 
     public String getDepartmentName() {
+        System.out.println(departmentName);
         return departmentName;
     }
 
