@@ -8,20 +8,16 @@ import database.entities.subentities.contactType;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args){
     try {
 
         Session session =databaseConfiguration.Config();
         Transaction transaction = session.beginTransaction();
-        Project project = new Project("Java Spring");
-        Department department = new Department("IRISA");
-        project.getDepartments().add(department);
-        department.getProjects().add(project);
-        session.persist(department);
-        session.persist(project);
         //Insert
-
+        new Employee().readEmployees(2);
         //Fetch Data
         //
 

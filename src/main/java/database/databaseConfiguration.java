@@ -47,6 +47,6 @@ public class databaseConfiguration {
     }
 
     private static String getImplementationMode() {
-        return "create";
+        return "update";
     }
 }

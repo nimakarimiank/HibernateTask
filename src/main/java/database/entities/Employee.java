@@ -1,8 +1,15 @@
 package database.entities;
 
+import database.databaseConfiguration;
 import database.entities.subentities.Contact;
 import database.entities.subentities.Gender;
+import org.hibernate.Session;
+
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
+import java.util.Optional;
 
 @Entity(name = "Employee")
 @Table(name = "employee")
@@ -113,11 +120,7 @@ public class Employee {
         this.gender = gender;
     }
 
-    public String getInfo (){
 
-
-        return  this.id +this.firstName+" "+this.lastName+" "+this.emailAddress;
-    }
 
     public Department getDepartment() {
         return department;
@@ -133,5 +136,45 @@ public class Employee {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+
+
+
+    public void getInfo(){
+        System.out.println(this.getId()+"\t"+this.getAge()+"\t"+this.getFirstName()+"\t"+this.getLastName()+"\t"+this.getNationalId()+"\t"+this.getDepartment().getDepartmentName()
+                                   +"\t"+this.getContact().getContactType()+": "+this.getContact().getCountryCode()+this.getContact().getNumber()
+                                   +"\t"+this.getGender()+"\t"+this.getEmailAddress());
+    }
+    public void readEmployees(){
+
+       Session session =  databaseConfiguration.Config();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Employee> employeeCriteriaQuery = criteriaBuilder.createQuery(Employee.class);
+        employeeCriteriaQuery.from(Employee.class);
+        List<Employee> employees =session.createQuery(employeeCriteriaQuery).getResultList();
+        for (var elem :
+                employees) {
+
+            System.out.println(elem.getId()+" "+elem.getFirstName()+elem.getDepartment().getDepartmentName());
+
+        }
+
+    }
+    public void readEmployees(int id){
+
+        List<Employee> employees;
+        try (Session session = databaseConfiguration.Config()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Employee> employeeCriteriaQuery = criteriaBuilder.createQuery(Employee.class);
+            employeeCriteriaQuery.from(Employee.class);
+            employees = session.createQuery(employeeCriteriaQuery).getResultList();
+        }
+        Optional<Employee> element =  employees.stream().filter(p->p.id==id).findFirst().map(p-> {
+            p.getInfo();
+            return p;
+        });
+
+
     }
 }
