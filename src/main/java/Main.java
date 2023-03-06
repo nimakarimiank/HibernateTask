@@ -17,7 +17,7 @@ public class Main {
         Session session =databaseConfiguration.Config();
         Transaction transaction = session.beginTransaction();
         //Insert
-        new Employee().readEmployees(2);
+        new Employee().readEmployee(2);
         //Fetch Data
         //
 
