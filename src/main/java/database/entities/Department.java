@@ -53,7 +53,6 @@ public class Department {
     }
 
     public String getDepartmentName() {
-        System.out.println(departmentName);
         return departmentName;
     }
 
