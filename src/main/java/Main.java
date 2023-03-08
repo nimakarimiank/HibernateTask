@@ -35,7 +35,7 @@ public class Main {
 
         //Read-InnerJoin
         Query secondQuery = session.createQuery(" select d.departmentName, p.projectName from  department as  d , project as p inner join " +
-                                                        "department.projects as dp on dp.id =p.id");
+                                                        "project.departments as pd on pd.id = p.id");
         List<Object[]> hqldepartmentsProjectsList = (List<Object[]>) secondQuery.getResultList();
         for (Object[] elem:hqldepartmentsProjectsList){
             System.out.println(elem[0]+ " "+ elem[1]);
@@ -56,7 +56,8 @@ public class Main {
     }
     catch (Exception e ){
 
-        System.out.println(e.getMessage());
+        System.out.println(e.getMessage()+"\t"+e.getCause()+"\t"+e.getLocalizedMessage()+e.getClass());
+
     }
 
     }
