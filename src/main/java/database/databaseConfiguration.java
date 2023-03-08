@@ -14,14 +14,15 @@ import java.util.Properties;
 public class databaseConfiguration {
     public static Session Config(){
         Configuration configuration = new Configuration();
-
-        configuration.setProperties(getProperties());
         configuration.addAnnotatedClass(Employee.class);
         configuration.addAnnotatedClass(Department.class);
         configuration.addAnnotatedClass(Project.class);
         configuration.addAnnotatedClass(Users.class);
+        configuration.setProperties(getProperties());
+
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties());
+
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
         Session session = sessionFactory.openSession();
         return session;

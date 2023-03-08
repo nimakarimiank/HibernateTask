@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity(name = "Employee")
-@Table(name = "employee")
 public class Employee {
     @ManyToOne(targetEntity = Department.class)
     private Department department;
