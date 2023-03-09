@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b6d208e3-1a0d-4d39-902d-05c7fe68cb08" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/databaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/databaseConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/entities/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/entities/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +89,8 @@
       <workItem from="1677939591855" duration="3881000" />
       <workItem from="1678029413952" duration="9765000" />
       <workItem from="1678108710062" duration="16287000" />
-      <workItem from="1678304764432" duration="1636000" />
+      <workItem from="1678304764432" duration="1909000" />
+      <workItem from="1678388164206" duration="495000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1677608683000</created>
@@ -184,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678306020693</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="init">
+      <created>1678306410571</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678306410571</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,11 +218,6 @@
           <properties class="javax.persistence.PersistenceException" package="javax.persistence" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
