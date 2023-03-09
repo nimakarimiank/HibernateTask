@@ -20,37 +20,35 @@ public class Main {
 
         Session session =databaseConfiguration.Config();
         Transaction transaction = session.beginTransaction();
-        //Read-Fulljoin
-//        Query query = session.createQuery("select e.firstName,e.lastName,d.departmentName from Employee e " +
-//                                                  "full join department d on e.department.id = d.id"
-//                                                  );
-//
-//        List<Object[]> employees =(List<Object[]>) query.getResultList();
-//        for (Object[] elem :
-//                employees) {
-//            System.out.println(elem[0]+" "+elem[1]+" "+elem[2]+" ");
-//        }
-//
+//        Read-Fulljoin
+        Query query = session.createQuery("select e.firstName,e.lastName,d.departmentName from Employee e " +
+                                                  "full join department d on e.department.id = d.id"
+                                                  );
+
+        List<Object[]> employees =(List<Object[]>) query.getResultList();
+        for (Object[] elem :
+                employees) {
+            System.out.println(elem[0]+" "+elem[1]+" "+elem[2]+" ");
+        }
 
 
-        //Read-InnerJoin
+
+//        HQL JOIN ON DEPARTMENT - PROJECT - DEPARTMENT_PROJECT
         Query secondQuery = session.createQuery(" select d.departmentName, p.projectName from  department as  d , project as p  join " +
                                                         "p.departments as pd on pd.id = d.id join d.projects as dp on dp.id = p.id");
         List<Object[]> hqldepartmentsProjectsList = (List<Object[]>) secondQuery.getResultList();
         for (Object[] elem:hqldepartmentsProjectsList){
             System.out.println(elem[0]+ " "+ elem[1]);
         }
-            //SQL JOIN ON DEPARTMENT - PROJECT - DEPARTMENT_PROJECT
-//            Query thirdQuery  = session.createSQLQuery("select department.departmentname , project.projectname from department" +
-//                                                               " join project_department on department.id = project_department.departments_id" +
-//                                                               " join project on project_department.projects_id = project.id");
-//            List<Object[]> sqldepartmentsProjectsList = (List<Object[]>) thirdQuery.getResultList();
-//            for (Object[] elem:sqldepartmentsProjectsList){
-//                System.out.println(elem[0]+ " "+ elem[1]);
-//            }
+//            SQL JOIN ON DEPARTMENT - PROJECT - DEPARTMENT_PROJECT
+            Query thirdQuery  = session.createSQLQuery("select department.departmentname , project.projectname from department" +
+                                                               " join project_department on department.id = project_department.departments_id" +
+                                                               " join project on project_department.projects_id = project.id");
+            List<Object[]> sqldepartmentsProjectsList = (List<Object[]>) thirdQuery.getResultList();
+            for (Object[] elem:sqldepartmentsProjectsList){
+                System.out.println(elem[0]+ " "+ elem[1]);
+            }
 
-//        select public.department.departmentname , public.project.projectname from public.department
-//        join public.project_department on department.id = project_department.departments_id join public.project on project_department.projects_id = project.id
         transaction.commit();
         session.close();
     }
